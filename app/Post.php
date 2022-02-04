@@ -32,4 +32,9 @@ class Post extends Model
         return $slug;
 
     }
+
+    //per sapere a che categoria appartiene il post
+    public function category(){
+        return $this->belongsTo('App/Category');
+    }
 }
