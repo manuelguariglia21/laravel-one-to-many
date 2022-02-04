@@ -38,5 +38,23 @@
         </tbody>
       </table>
     </div>
+    <div class="categories">
+      <h2>Categories</h2>
+      @foreach ($categories as $category)
+
+      <ul>
+        {{$category->name}}
+        
+        @foreach ($category->posts as $post)
+
+        <li>
+          <a href="{{route('admin.posts.show', $post->id)}}">{{$post->title}}</a>
+        </li>
+            
+        @endforeach
+      </ul>
+          
+      @endforeach
+    </div>
 </div>
 @endsection
