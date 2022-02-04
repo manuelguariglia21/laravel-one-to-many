@@ -10,7 +10,7 @@ class Category extends Model
     //per sapere quali post appartengono a questa categoria
 
     public function posts(){
-        return $this->hasMany('App/Post');
+        return $this->hasMany('App\Post');
     }
     
 }
