@@ -45,13 +45,17 @@
       <ul>
         {{$category->name}}
         
-        @foreach ($category->posts as $post)
+        @forelse ($category->posts as $post)
 
         <li>
           <a href="{{route('admin.posts.show', $post->id)}}">{{$post->title}}</a>
         </li>
+        
+        @empty
+
+        <li>Nessun post presente</li>
             
-        @endforeach
+        @endforelse
       </ul>
           
       @endforeach
