@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(4);
         $categories = Category::all();
         return view('admin.posts.index', compact('posts', 'categories'));
 
@@ -40,7 +40,16 @@ class PostController extends Controller
     public function store(Request $request)
     {   
         $data = $request->all();
-
+        $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required'
+            ],
+            [
+                'title.required' => 'title è un campo obbligatorio',
+                'description.required' => 'description è un campo obbligatorio',
+            ],
+        );
         $new_post = new Post();
         $data['slug'] = Post::generateSlug($data['title']);
         $new_post->fill($data);
@@ -90,6 +99,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
+        $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required'
+            ],
+            [
+                'title.required' => 'title è un campo obbligatorio',
+                'description.required' => 'description è un campo obbligatorio',
+            ],
+        );
         $data['slug'] = Post::generateSlug($data['title']);
         $post->update($data);
         return redirect()->route('admin.posts.show', $post);

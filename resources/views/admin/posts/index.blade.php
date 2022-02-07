@@ -37,6 +37,7 @@
     
         </tbody>
       </table>
+      {{$posts->links()}}
     </div>
     <div class="categories">
       <h2>Categories</h2>
